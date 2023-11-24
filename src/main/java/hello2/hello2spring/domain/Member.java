@@ -17,8 +17,8 @@ public class Member {
         return name;
     }
 
-    public String setName(String spring){
-        return name;
+    public String setName(String name){
+        return this.name=name;
     }
 
 }

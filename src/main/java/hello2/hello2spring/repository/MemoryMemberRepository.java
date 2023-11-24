@@ -1,13 +1,17 @@
 package hello2.hello2spring.repository;
 
 import hello2.hello2spring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
+
+@Repository
 // 회원 도메인 리포지토리 만들기
-public class MemoryMemberRepository implements MemberRepository{
+    public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
+
     @Override
     public Member save(Member member) {
         member.setId(++sequence);
@@ -16,8 +20,9 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
 
+
     @Override
-    public Optional<Member> finById(Long id) {
+    public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));
     }
 
@@ -29,7 +34,11 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
-    public List<Member> finaAll() {
+    public List<Member> findAll() {
         return new ArrayList<>(store.values());
+    }
+
+    public void clearStore(){
+        store.clear();
     }
 }
